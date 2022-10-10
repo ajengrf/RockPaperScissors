@@ -1,4 +1,4 @@
-package com.example.rockpaperscissors
+package com.example.rockpaperscissors.ui.main
 
 import android.content.ContentValues.TAG
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.rockpaperscissors.R
 import com.example.rockpaperscissors.databinding.ActivityMainBinding
 import com.example.rockpaperscissors.enum.GameState
 import com.example.rockpaperscissors.enum.PlayerChoice
