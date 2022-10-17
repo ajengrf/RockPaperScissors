@@ -4,4 +4,7 @@
     <string name="text_vs">VS</string>
     <string name="text_player_1">Player 1</string>
     <string name="text_player_2">Computer</string>
+    <string name="text_slider_title">Rock Paper Scissors</string>
+    <string name="text_string_description_1">Play with your friend</string>
+    <string name="text_string_description_2">Play with computer</string>
 </resources>

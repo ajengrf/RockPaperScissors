@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowInsets
 import com.example.rockpaperscissors.R
+import com.example.rockpaperscissors.slider.IntroSlider
 import com.example.rockpaperscissors.ui.main.MainActivity
 
 class SplashScreen : AppCompatActivity() {
@@ -18,7 +19,8 @@ class SplashScreen : AppCompatActivity() {
         // TODO: Warning:(13, 7) The application should not provide its own launch screen
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+//            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, IntroSlider::class.java)
             startActivity(intent)
             finish()
         }, 2000)
