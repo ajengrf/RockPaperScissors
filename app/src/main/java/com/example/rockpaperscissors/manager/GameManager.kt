@@ -161,10 +161,14 @@ class MultiPlayerRockPaperScissorsGameManager(listener: GameListener) :
     override fun startOrRestartGame() {
         when (state) {
             GameState.PLAYER_ONE_TURN -> {
-                setGameState(GameState.PLAYER_TWO_TURN)
+                if (playerOne.playerChoice != null) {
+                    setGameState(GameState.PLAYER_TWO_TURN)
+                }
             }
             GameState.PLAYER_TWO_TURN -> {
-                startGame()
+                if (playerTwo.playerChoice != null) {
+                    startGame()
+                }
             }
             GameState.FINISHED -> {
                 restartGame()
