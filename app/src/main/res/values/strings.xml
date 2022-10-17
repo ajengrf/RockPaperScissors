@@ -15,4 +15,15 @@
     <string name="text_menu_description">Which one do you want to play?</string>
     <string name="text_player_vs_computer">Player vs Computer</string>
     <string name="text_player_vs_player">Player vs Player</string>
+    <string name="text_your_turn">Your Turn</string>
+    <string name="text_com_turn">Computer Turn!</string>
+    <string name="text_play_again">Play Again?</string>
+    <string name="text_draw">DRAW</string>
+    <string name="text_you_win">You WIN</string>
+    <string name="text_you_lose">You LOSE</string>
+    <string name="text_vs_capital">VS</string>
+    <string name="text_lock_choice">Lock Choice</string>
+    <string name="text_player2_turn">Player 2 Turn</string>
+    <string name="text_player1_turn">Player 1 Turn</string>
+    <string name="text_label_player_2">Player 2</string>
 </resources>

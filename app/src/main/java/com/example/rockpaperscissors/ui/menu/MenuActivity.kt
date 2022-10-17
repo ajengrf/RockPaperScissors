@@ -2,10 +2,11 @@ package com.example.rockpaperscissors.ui.menu
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.rockpaperscissors.R
 import com.example.rockpaperscissors.databinding.ActivityMenuBinding
+import com.example.rockpaperscissors.ui.main.MainActivity
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMenuBinding
@@ -24,17 +25,23 @@ class MenuActivity : AppCompatActivity() {
 
     private fun setNameOnTitle() {
         binding.tvTitle.text = getString(R.string.text_greeting, name)
-
     }
 
     private fun setMenuClickListener() {
         binding.ivVersusComputer.setOnClickListener {
-            // todo
+            playWithComputer()
         }
         binding.ivVersusPlayer.setOnClickListener {
-//            todo
+            playWithAnotherPlayer()
         }
+    }
 
+    private fun playWithComputer() {
+        MainActivity.startActivity(this, false)
+    }
+
+    private fun playWithAnotherPlayer() {
+        MainActivity.startActivity(this, true)
     }
 
     companion object {

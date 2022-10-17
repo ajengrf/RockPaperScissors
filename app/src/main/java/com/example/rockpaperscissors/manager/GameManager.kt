@@ -1,5 +1,7 @@
 package com.example.rockpaperscissors.manager
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.example.rockpaperscissors.R
 import com.example.rockpaperscissors.enum.GameState
 import com.example.rockpaperscissors.enum.PlayerChoice
@@ -19,12 +21,12 @@ interface GameListener {
     fun onGameFinished(gameState: GameState, winner: Player?)
 }
 
-class RockPaperScissorsGameManager(
+open class RockPaperScissorsGameManager(
     private val listener: GameListener
 ) : GameManager {
-    private lateinit var playerOne: Player
-    private lateinit var playerTwo: Player
-    private lateinit var gameState: GameState
+    protected lateinit var playerOne: Player
+    protected lateinit var playerTwo: Player
+    protected lateinit var state: GameState
 
     override fun initGame() {
         setGameState(GameState.STARTED)
@@ -40,13 +42,13 @@ class RockPaperScissorsGameManager(
         }
     }
 
-    private fun setGameState(newGameState: GameState) {
-        gameState = newGameState
-        listener.onGameStateChanged(gameState)
+    protected fun setGameState(newGameState: GameState) {
+        state = newGameState
+        listener.onGameStateChanged(state)
     }
 
     override fun chooseCharacter(choice: PlayerChoice) {
-        if (gameState != GameState.FINISHED) {
+        if (state != GameState.FINISHED) {
             if (choice != null) {
                 setPlayerOneChoice(choice)
             }
@@ -65,7 +67,7 @@ class RockPaperScissorsGameManager(
         )
     }
 
-    private fun setPlayerTwoChoice(
+    protected fun setPlayerTwoChoice(
         playerChoice: PlayerChoice? = playerTwo.playerChoice
     ) {
         playerTwo.apply {
@@ -81,7 +83,7 @@ class RockPaperScissorsGameManager(
         return PlayerChoice.values()[index]
     }
 
-    private fun startGame() {
+    protected fun startGame() {
         if (playerOne.playerChoice != null) {
 
             var playerTwoChoice = getPlayerTwoChoice()
@@ -108,28 +110,67 @@ class RockPaperScissorsGameManager(
                     playerOne
                 }
             setGameState(GameState.FINISHED)
-            listener.onGameFinished(gameState, winner)
+            listener.onGameFinished(state, winner)
         } else {
             val winner = null
             setGameState(GameState.FINISHED)
-            listener.onGameFinished(gameState, winner)
+            listener.onGameFinished(state, winner)
         }
     }
 
-    private fun getPlayerTwoChoice(): PlayerChoice {
+    open fun getPlayerTwoChoice(): PlayerChoice {
         val randomChoice = Random.nextInt(0, until = PlayerChoice.values().size)
         return getPlayerChoiceByOrdinal(randomChoice)
     }
 
-    private fun restartGame() {
+    protected fun restartGame() {
         initGame()
     }
 
     override fun startOrRestartGame() {
-        if (gameState != GameState.FINISHED) {
+        if (state != GameState.FINISHED) {
             startGame()
         } else {
             restartGame()
         }
+    }
+}
+
+class MultiPlayerRockPaperScissorsGameManager(listener: GameListener) :
+    RockPaperScissorsGameManager(listener) {
+
+    override fun initGame() {
+        super.initGame()
+        setGameState(GameState.PLAYER_ONE_TURN)
+    }
+
+    override fun getPlayerTwoChoice(): PlayerChoice {
+        return playerTwo.playerChoice!!
+    }
+
+    override fun chooseCharacter(choice: PlayerChoice) {
+        if (state == GameState.PLAYER_ONE_TURN) {
+            super.chooseCharacter(choice)
+        } else if (state == GameState.PLAYER_TWO_TURN) {
+            if (choice != null) {
+                setPlayerTwoChoice(choice)
+            }
+        } else return
+    }
+
+    override fun startOrRestartGame() {
+        when (state) {
+            GameState.PLAYER_ONE_TURN -> {
+                setGameState(GameState.PLAYER_TWO_TURN)
+            }
+            GameState.PLAYER_TWO_TURN -> {
+                startGame()
+            }
+            GameState.FINISHED -> {
+                restartGame()
+            }
+            else -> return
+        }
+
     }
 }
