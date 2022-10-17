@@ -24,24 +24,26 @@ class IntroSlider : AppIntro() {
         isSkipButtonEnabled = false
         buildSliderFragment(
             getString(R.string.text_slider_title),
-            getString(R.string.text_string_description_1)
+            getString(R.string.text_string_description_1),
+            R.drawable.ic_vs_player
         )
         buildSliderFragment(
             getString(R.string.text_slider_title),
-            getString(R.string.text_string_description_2)
+            getString(R.string.text_string_description_2),
+            R.drawable.ic_vs_computer
         )
         addSlide(InputNameFragment())
 
     }
 
-    private fun buildSliderFragment(textTitle: String, textDescription: String) {
+    private fun buildSliderFragment(textTitle: String, textDescription: String, image: Int) {
         addSlide(
             AppIntroFragment.createInstance(
                 title = textTitle,
                 description = textDescription,
                 titleColorRes = R.color.white,
                 descriptionColorRes = R.color.white,
-                imageDrawable = R.drawable.ic_splash_screen,
+                imageDrawable = image,
                 backgroundColorRes = R.color.purple_200
             )
         )
