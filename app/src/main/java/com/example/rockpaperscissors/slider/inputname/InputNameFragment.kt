@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.rockpaperscissors.databinding.FragmentInputNameBinding
 import com.example.rockpaperscissors.slider.OnFinishNavigateListener
+import com.example.rockpaperscissors.ui.menu.MenuActivity
 
 class InputNameFragment : Fragment(), OnFinishNavigateListener {
     private lateinit var binding: FragmentInputNameBinding
@@ -31,6 +32,6 @@ class InputNameFragment : Fragment(), OnFinishNavigateListener {
     }
 
     private fun navigateToMenu(name: String) {
-        Toast.makeText(requireContext(), "Name $name", Toast.LENGTH_SHORT).show()
+        MenuActivity.startActivity(requireContext(), name)
     }
 }
