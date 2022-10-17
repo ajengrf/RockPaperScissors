@@ -3,6 +3,7 @@ package com.example.rockpaperscissors.slider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.rockpaperscissors.R
+import com.example.rockpaperscissors.slider.inputname.InputNameFragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
 
@@ -29,6 +30,7 @@ class IntroSlider : AppIntro() {
             getString(R.string.text_slider_title),
             getString(R.string.text_string_description_2)
         )
+        addSlide(InputNameFragment())
 
     }
 

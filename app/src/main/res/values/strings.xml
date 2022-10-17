@@ -7,4 +7,8 @@
     <string name="text_slider_title">Rock Paper Scissors</string>
     <string name="text_string_description_1">Play with your friend</string>
     <string name="text_string_description_2">Play with computer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_text_input_name">Input Your Name</string>
+    <string name="et_text_input_name">Your Name</string>
 </resources>
